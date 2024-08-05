@@ -8,10 +8,6 @@ app.use(cors({
     credentials: true
 }));
 
-app.get("/" , (req , res) => {
-    res.send("MAdhav")
-})
-
 app.use(express.json({limit:"50kb"}));
 app.use(express.urlencoded({extended:true, limit:"15kb"}));
 app.use(express.static("public"));
