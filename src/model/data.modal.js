@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const dataSchema = new mongoose.Schema({
-    data:{
+    text:{
         type:String,
     }
 } , {timestamps:true});

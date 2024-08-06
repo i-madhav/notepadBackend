@@ -7,16 +7,16 @@ const generateDocumentAndSaveDocument = asyncHandler(async (req, res) => {
     const { id, content } = req.body;
 
     if (id) {
-
         const dataContent = await Data.findById(id);
         if (!dataContent) throw new ApiError(404, "data is not found");
-        dataContent.data = content;
+        dataContent.text = content;
         await dataContent.save({ validateBeforeSave: false });
+        console.log(dataContent.text);
         return res.status(200).json(new ApiResponse(200, dataContent, "Content Updated"));
 
     } else {
         const dataContent = await Data.create({
-            data: content || ""
+            text: content || ""
         });
 
         const createdData = await Data.findById(dataContent._id);
@@ -30,11 +30,11 @@ const generateDocumentAndSaveDocument = asyncHandler(async (req, res) => {
 
 const fetchDocument = asyncHandler(async (req, res) => {
     const { id } = req.body;
-    const data = await Data.findById(id);
-    if (!data) throw new ApiError(404, "Data not found");
+    const dataRes = await Data.findById(id);
+    if (!dataRes) throw new ApiError(404, "Data not found");
 
     return res.status(200)
-        .json(new ApiResponse(200, data.data, "data fetched"));
+        .json(new ApiResponse(200, dataRes, "data fetched"));
 })
 
 export { generateDocumentAndSaveDocument, fetchDocument };
