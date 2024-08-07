@@ -28,7 +28,7 @@ const generateDocumentAndSaveDocument = asyncHandler(async (req, res) => {
 });
 
 const fetchDocument = asyncHandler(async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.param;
     const dataRes = await Data.findById(id);
     if (!dataRes) throw new ApiError(404, "Data not found");
 

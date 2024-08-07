@@ -3,6 +3,6 @@ import { fetchDocument, generateDocumentAndSaveDocument } from "../controller/da
 const router = Router();
 
 router.route("/save").post(generateDocumentAndSaveDocument);
-router.route("/fetch").post(fetchDocument);
+router.route("/fetch").get(fetchDocument);
 
 export default router;
